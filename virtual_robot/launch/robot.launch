@@ -1,0 +1,16 @@
+<launch>
+  <!-- 設置模型文件的預設路徑 -->
+  <arg name="model" default="$(find virtual_robot)/urdf/robot.urdf"/>
+  <!-- 載入機器人模型描述 -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(arg model)'"/>
+  <!-- 啟動機器人狀態發布 -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+  <!-- 啟動Rviz並載入指定的設定檔 -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find virtual_robot)/rviz/robot.rviz"/>
+  <!-- 啟動Gazebo模擬器並加載機器人模型 -->
+  <node name="gazebo" pkg="gazebo_ros" type="gazebo" args="-urdf -param robot_description -model simple_robot -x 0 -y 0 -z 0"/>
+  <!-- 在Gazebo中產生機器人模型 -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model simple_robot"/>
+  <!-- 啟動虛擬機器人的導航節點 -->
+  <node name="simple_robot" pkg="virtual_robot" type="navigation.py" output="screen"/>
+</launch>

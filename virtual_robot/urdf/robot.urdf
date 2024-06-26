@@ -1,0 +1,27 @@
+<robot name="simple_robot">
+  <!-- 定義基座連結 -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.5 0.5 0.1"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+  <!-- 定義基座到輪子的連接關節 -->
+  <joint name="base_to_wheel" type="continuous">
+    <parent link="base_link"/>
+    <child link="wheel"/>
+    <origin xyz="0 0 -0.05" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+  <!-- 定義輪子連結 -->
+  <link name="wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.05"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+</robot>

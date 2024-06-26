@@ -1,0 +1,12 @@
+Visualization Manager:
+  Class: ""
+  Enabled: true
+  Name: root
+  Displays:
+    - Alpha: 0.7
+      Cell Size: 0.05
+      Class: Grid
+      Color: 160; 160; 160
+      Enabled: true
+      Name: Grid
+      Value: true
